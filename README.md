@@ -1,6 +1,6 @@
 GoogleForm じゃ重たい。もっと簡単にアンケートが取りたい。  
 勉強会やちょっとしたイベントのフィードバックに。
-kotohazime しませんか？
+kotohazi.me しませんか？
 
 ### Meta
 
