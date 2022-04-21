@@ -1,14 +1,20 @@
-$P###9hsw2#-uTv
-#h##QP#$#Ape##&
-_9Nf0#E#?x##d42
-i##Z%s#3$#+qq##
-5_p###NS#1p#y_P
-7#R0##?##-#07#0
-q##f3z$#4l_h#$w
-YBQU##1oN#####3
-#7##TSk#wG&d#Tr
-LACtQ#$ig#X#6#!
+includes:
+    - ./vendor/nunomaduro/larastan/extension.neon
 
+parameters:
+    scanFiles:
+        - _ide_helper_models.php
 
-★Ph9_i57qYB7ACtQTSk★igwG&d
-★Ph9_i57qYBQUf3z★1oN41_h07y_P0w3r!
+    paths:
+        - app
+
+    # The level 9 is the highest level
+    level: 8
+
+    excludePaths:
+        - ./*/*/FileToBeExcluded.php
+
+    checkMissingIterableValueType: false
+    checkGenericClassInNonGenericObjectType: false
+    ignoreErrors:
+
