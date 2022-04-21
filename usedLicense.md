@@ -52,7 +52,7 @@ Copyright (c) 2014 Roave, LLC
 
 Released under the MIT license
 
-https://github.com/barryvdh/laravel-ide-helper/blob/master/LICENSE.md
+https://github.com/Roave/SecurityAdvisories/blob/latest/LICENSE
 
 ## laravel-ide-helper
 
@@ -62,7 +62,7 @@ Copyright (c) Barry vd. Heuvel barryvdh@gmail.com
 
 Released under the MIT license
 
-https://github.com/Roave/SecurityAdvisories/blob/latest/LICENSE
+https://github.com/barryvdh/laravel-ide-helper/blob/master/LICENSE.md
 
 # その他
 
@@ -72,4 +72,4 @@ Copyright (c) 2020 ucan-lab/docker-laravel
 
 Released under MIT License.
 
-https://github.com/ucan-lab/docker-laravel/blob/main/LICENSE
+    https://github.com/ucan-lab/docker-laravel/blob/main/LICENSE
