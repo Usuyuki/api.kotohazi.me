@@ -12,6 +12,54 @@
 
 namespace App\Models{
 /**
+ * App\Models\Questionnaire
+ *
+ * @method static \Database\Factories\QuestionnaireFactory factory(...$parameters)
+ * @method static \Illuminate\Database\Eloquent\Builder|Questionnaire newModelQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|Questionnaire newQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|Questionnaire query()
+ */
+	class Questionnaire extends \Eloquent {}
+}
+
+namespace App\Models{
+/**
+ * App\Models\Respondent
+ *
+ * @method static \Database\Factories\RespondentFactory factory(...$parameters)
+ * @method static \Illuminate\Database\Eloquent\Builder|Respondent newModelQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|Respondent newQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|Respondent query()
+ */
+	class Respondent extends \Eloquent {}
+}
+
+namespace App\Models{
+/**
+ * App\Models\Statistic
+ *
+ * @method static \Database\Factories\StatisticFactory factory(...$parameters)
+ * @method static \Illuminate\Database\Eloquent\Builder|Statistic newModelQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|Statistic newQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|Statistic query()
+ */
+	class Statistic extends \Eloquent {}
+}
+
+namespace App\Models{
+/**
+ * App\Models\Template
+ *
+ * @method static \Database\Factories\TemplateFactory factory(...$parameters)
+ * @method static \Illuminate\Database\Eloquent\Builder|Template newModelQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|Template newQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|Template query()
+ */
+	class Template extends \Eloquent {}
+}
+
+namespace App\Models{
+/**
  * App\Models\User
  *
  * @property int $id

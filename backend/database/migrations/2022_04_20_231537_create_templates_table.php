@@ -1,0 +1,44 @@
+<?php
+
+use Illuminate\Database\Migrations\Migration;
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Support\Facades\Schema;
+
+return new class extends Migration
+{
+    /**
+     * Run the migrations.
+     *
+     * @return void
+     */
+    public function up()
+    {
+        Schema::create('templates', function (Blueprint $table) {
+            $table->id();
+            $table->foreignId("user_id")->constrained()->comment("ユーザーid");
+            $table->string("name")->comment("テンプレート名");
+            $table->string("description")->nullable()->comment("アンケート説明文章");
+            $table->string("evaluation_title")->nullable()->comment("「評価」に値する名前");
+            $table->string("impression_title")->nullable()->comment("「感想」に値する名前");
+            $table->string("evaluation_emoji")->nullable()->comment("5段階で使いたい絵文字");
+            $table->string("good_name")->nullable()->comment("良いに該当する名前");
+            $table->string("bad_name")->nullable()->comment("悪いに該当する名前");
+            $table->string("after_answering")->nullable()->comment("アンケート送信後の感謝コメント");
+            $table->boolean("is_open")->comment("公開中か？");
+            $table->boolean("pass")->nullable()->comment("鍵");
+            $table->unsignedTinyInteger("open_at")->nullable()->comment("公開までの時間");
+            $table->unsignedTinyInteger("close_at")->nullable()->comment("公開終了までの時間");
+            $table->timestamps();
+        });
+    }
+
+    /**
+     * Reverse the migrations.
+     *
+     * @return void
+     */
+    public function down()
+    {
+        Schema::dropIfExists('templates');
+    }
+};

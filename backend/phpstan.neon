@@ -16,4 +16,5 @@ parameters:
 
     checkMissingIterableValueType: false
     checkGenericClassInNonGenericObjectType: false
+    ignoreErrors:
 
