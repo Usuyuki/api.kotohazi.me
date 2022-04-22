@@ -16,9 +16,10 @@ use Illuminate\Support\Facades\Route;
 */
 
 
-Route::middleware('auth:api')->get('/home', function (Request $request) {
+Route::middleware('auth:api')->get('/userInfo', function (Request $request) {
     return $request->user();
 });
+/** @todo Session store not set on requestエラー防止のためにとりあえず入れたミドルウェアラッパーなのでこれはよくないかも */
 Route::group(['middleware' => ['web']], function () {
     Route::get('/login/{provider}', [OAuthController::class, 'getProviderOAuthURL'])
         ->where('provider', 'google')->name('oauth.request');

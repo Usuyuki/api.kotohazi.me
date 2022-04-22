@@ -39,6 +39,7 @@ class OAuthController extends Controller
      */
     public static function handleProviderCallback()
     {
+        /** @todo statelessメソッドを使用すると、セッション状態の確認を無効にできます。これは、クッキーベースのセッションを利用しないステートレスAPIに、ソーシャル認証を追加する場合に有用です。 */
         $googleUser = Socialite::driver('google')->stateless()->user();
 
         $user  = User::where('google_id', $googleUser->id)->first();
@@ -49,9 +50,8 @@ class OAuthController extends Controller
                 'name' => $googleUser->name,
                 'email' => $googleUser->email,
                 'email_verified_at' => now(),
-                'profile_photo_path' => $googleUser->user['avatar_url'],
+                'profile_photo_path' => $googleUser->avatar,
                 'login_provider' => 1,
-                'google_id' => $googleUser->getId(),
                 'google_token' => $googleUser->token,
                 'google_refresh_token' => $googleUser->refreshToken,
                 'api_token' => hash('sha256', $token),
@@ -61,8 +61,9 @@ class OAuthController extends Controller
                 'name' => $googleUser->name,
                 'email' => $googleUser->email,
                 'email_verified_at' => now(),
-                'profile_photo_path' => $googleUser->user['avatar_url'],
+                'profile_photo_path' => $googleUser->avatar,
                 'login_provider' => 1,
+                'google_id' => $googleUser->id,
                 'google_token' => $googleUser->token,
                 'google_refresh_token' => $googleUser->refreshToken,
                 'api_token' => hash('sha256', $token),

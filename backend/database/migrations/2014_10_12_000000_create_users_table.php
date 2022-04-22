@@ -24,8 +24,8 @@ return new class extends Migration
             $table->string('google_id')->nullable()->comment('googleのid');
             $table->string('google_token')->nullable()->unique()->comment('googleのトークン');
             $table->string('profile_photo_path')->nullable()->comment('googleから取得したアイコンurl');
-            $table->string('google_refresh_token')->nullable()->comment('googleのトークン');
-            $table->string('api_token')->nullable()->comment('googleのトークン');
+            $table->string('google_refresh_token')->nullable()->comment('googleのリフレッシュトークン'); //これはnullになる。
+            $table->string('api_token')->nullable()->comment('同時に生成するapi_token');
 
             $table->rememberToken();
             $table->timestamps();
