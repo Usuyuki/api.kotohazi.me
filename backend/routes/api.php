@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Auth\OAuthController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -14,6 +15,13 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
+
+Route::middleware('auth:api')->get('/home', function (Request $request) {
     return $request->user();
 });
+Route::group(['middleware' => ['web']], function () {
+    Route::get('/login/{provider}', [OAuthController::class, 'getProviderOAuthURL'])
+        ->where('provider', 'google')->name('oauth.request');
+});
+Route::get('/auth/{provider}/callback', [OAuthController::class, 'handleProviderCallback'])
+    ->where('provider', 'google')->name('oauth.callback');

@@ -19,6 +19,14 @@ return new class extends Migration
             $table->string('email')->unique();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password')->nullable();
+            $table->unsignedTinyInteger('login_provider')->comment('ソーシャル認証のサービス名Enum');
+
+            $table->string('google_id')->nullable()->comment('googleのid');
+            $table->string('google_token')->nullable()->unique()->comment('googleのトークン');
+            $table->string('profile_photo_path')->nullable()->comment('googleから取得したアイコンurl');
+            $table->string('google_refresh_token')->nullable()->comment('googleのトークン');
+            $table->string('api_token')->nullable()->comment('googleのトークン');
+
             $table->rememberToken();
             $table->timestamps();
         });
