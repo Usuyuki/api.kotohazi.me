@@ -10,8 +10,9 @@
 
         <h1 class="text-center mb-6 font-bold">api.kotohazi.me</h1>
 
-        <div class="flex justify-center gap-4 mb-8">
+        <div class="flex justify-center flex-col gap-4 mb-8">
             <p>コトハジメのAPIです。</p>
+            <p>このAPIは一般公開向けではありません</p>
         </div>
 
         <div class="wrapper">

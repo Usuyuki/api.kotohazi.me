@@ -1,49 +1,32 @@
 <?php
 
-namespace App\Http\Controllers\Auth;
+declare(strict_types=1);
 
+namespace App\Http\Actions\OAuth;
+
+use Laravel\Socialite\Facades\Socialite;
+use Illuminate\Support\Str;
 use App\Http\Controllers\Controller;
 use App\Models\User;
 use Illuminate\Support\Facades\Auth;
 
-use Illuminate\Support\Facades\Crypt;
-use Illuminate\Support\Str;
-use Illuminate\Support\Facades\Cookie;
-use Laravel\Socialite\Facades\Socialite;
-
-class OAuthController extends Controller
+/**
+ * @todo これはまったく分離できていないので後で分離する
+ * @todo このクッキー方式だとhttponly属性にできないというセキュリティリスクありのため本番では変更する
+ */
+final class HandleProviderCallbackAction extends Controller
 {
-    /**
-     * （各認証プロバイダーの）OAuth認可画面URL取得API
-     * @param string $provider 認証プロバイダーとなるサービス名
-     * @return \Illuminate\Http\JsonResponse
-     */
-    public function getProviderOAuthURL(string $provider)
-    {
-        assert(in_array($provider, ['google', 'github', 'line']));
-        $redirectUrl = Socialite::driver($provider)->redirect()->getTargetUrl();
-
-        return response()->json([
-            'redirect_url' => $redirectUrl,
-        ]);
-    }
-
-    public static function generateToken()
-    {
-        return Str::random(80);
-    }
-
     /**
      * ソーシャルログイン処理
      * @return App\User
      */
-    public static function handleProviderCallback()
+    public function __invoke()
     {
         /** @todo statelessメソッドを使用すると、セッション状態の確認を無効にできます。これは、クッキーベースのセッションを利用しないステートレスAPIに、ソーシャル認証を追加する場合に有用です。 */
         $googleUser = Socialite::driver('google')->stateless()->user();
 
         $user  = User::where('google_id', $googleUser->id)->first();
-        $token = self::generateToken();
+        $token = Str::random(80);
 
         if ($user) {
             $user->update([
@@ -73,6 +56,6 @@ class OAuthController extends Controller
         Auth::login($user);
 
         $cookie = cookie('api_token', $token, '10000000', null, null, null, false);
-        return redirect(env('FRONTEND_URL'))->cookie($cookie);
+        return redirect(env('FRONTEND_URL') . '/home')->cookie($cookie);
     }
 }

@@ -1,7 +1,8 @@
 <?php
 
-use App\Http\Controllers\Auth\OAuthController;
-use Illuminate\Http\Request;
+use App\Http\Actions\OAuth\GetProviderOAuthURLAction;
+use App\Http\Actions\OAuth\HandleProviderCallbackAction;
+use App\Http\Actions\User\GetUserInfoAction;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -16,13 +17,11 @@ use Illuminate\Support\Facades\Route;
 */
 
 
-Route::middleware('auth:api')->get('/userInfo', function (Request $request) {
-    return $request->user();
-});
+Route::middleware('auth:api')->get('/userInfo', GetUserInfoAction::class);
 /** @todo Session store not set on requestエラー防止のためにとりあえず入れたミドルウェアラッパーなのでこれはよくないかも */
 Route::group(['middleware' => ['web']], function () {
-    Route::get('/login/{provider}', [OAuthController::class, 'getProviderOAuthURL'])
+    Route::get('/login/{provider}', GetProviderOAuthURLAction::class)
         ->where('provider', 'google')->name('oauth.request');
 });
-Route::get('/auth/{provider}/callback', [OAuthController::class, 'handleProviderCallback'])
+Route::get('/auth/{provider}/callback', HandleProviderCallbackAction::class)
     ->where('provider', 'google')->name('oauth.callback');
