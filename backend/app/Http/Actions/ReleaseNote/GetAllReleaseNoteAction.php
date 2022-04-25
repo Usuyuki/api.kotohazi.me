@@ -2,16 +2,17 @@
 
 declare(strict_types=1);
 
-namespace App\Http\Actions\User;
+namespace App\Http\Actions\ReleaseNote;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Models\ReleaseNote;
 
 /**
  * @todo これはまったく分離できていないので後で分離する
  * @todo ちゃんとjsonにして返す
  */
-final class GetUserInfoAction extends Controller
+final class GetAllReleaseNoteAction extends Controller
 {
     // private $domain;
     // private $responder;
@@ -27,8 +28,7 @@ final class GetUserInfoAction extends Controller
      */
     public function __invoke(Request $request): \Illuminate\Http\JsonResponse
     {
-        return response()->json([
-            'user_info' => $request->user(),
-        ]);
+        $releaseNotes = ReleaseNote::all();
+        return response()->json($releaseNotes);
     }
 }

@@ -2,6 +2,7 @@
 
 use App\Http\Actions\OAuth\GetProviderOAuthURLAction;
 use App\Http\Actions\OAuth\HandleProviderCallbackAction;
+use App\Http\Actions\ReleaseNote\GetAllReleaseNoteAction;
 use App\Http\Actions\User\GetUserInfoAction;
 use Illuminate\Support\Facades\Route;
 
@@ -15,6 +16,9 @@ use Illuminate\Support\Facades\Route;
 | is assigned the "api" middleware group. Enjoy building your API!
 |
 */
+
+/**未ログインでアクセスできるページ */
+Route::get('/release-notes/all', GetAllReleaseNoteAction::class)->name('リリースノート全件取得'); //ホームページ
 
 
 Route::middleware('auth:api')->get('/userInfo', GetUserInfoAction::class);
