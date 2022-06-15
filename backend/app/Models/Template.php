@@ -12,4 +12,10 @@ class Template extends Model
     protected $fillable = [
         "user_id", "name", "description", "comment_title", "rating_emoji", "good_name", "bad_name", "after_comment", "is_open", "pass", "open_at", "close_at"
     ];
+    /**
+     * 日付の登録(format使えるために)
+     *
+     * @var array
+     */
+    protected $dates = ['open_at', 'close_at'];
 }
