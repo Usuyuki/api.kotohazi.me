@@ -17,7 +17,9 @@ class RespondentFactory extends Factory
     public function definition()
     {
         return [
-            //
+            'questionnaire_id' => $this->faker->numberBetween(1, 55),
+            'evaluation' => $this->faker->numberBetween(1, 5),
+            'impression' => $this->faker->realText(),
         ];
     }
 }

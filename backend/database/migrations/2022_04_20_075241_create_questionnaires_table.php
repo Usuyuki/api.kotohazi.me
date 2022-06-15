@@ -26,7 +26,7 @@ return new class extends Migration
             $table->string("bad_name")->nullable()->comment("悪いに該当する名前");
             $table->string("after_answering")->nullable()->comment("アンケート送信後の感謝コメント");
             $table->boolean("is_open")->comment("公開中か？");
-            $table->boolean("pass")->nullable()->comment("鍵");
+            $table->string("pass")->nullable()->comment("鍵");
             $table->date("open_at")->nullable()->comment("公開開始時刻");
             $table->date("close_at")->nullable()->comment("公開終了時刻");
             $table->timestamps();
