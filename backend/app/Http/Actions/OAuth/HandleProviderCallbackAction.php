@@ -4,11 +4,12 @@ declare(strict_types=1);
 
 namespace App\Http\Actions\OAuth;
 
-use Laravel\Socialite\Facades\Socialite;
 use Illuminate\Support\Str;
 use App\Http\Controllers\Controller;
 use App\Models\User;
+use Laravel\Socialite\Facades\Socialite;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Log;
 
 /**
  * @todo これはまったく分離できていないので後で分離する
@@ -22,11 +23,10 @@ final class HandleProviderCallbackAction extends Controller
      */
     public function __invoke()
     {
+        \Log::debug("kokodeHandole");
         /** @todo statelessメソッドを使用すると、セッション状態の確認を無効にできます。これは、クッキーベースのセッションを利用しないステートレスAPIに、ソーシャル認証を追加する場合に有用 */
         $googleUser = Socialite::driver('google')->stateless()->user();
-
         $user  = User::where('google_id', $googleUser->id)->first();
-
 
         if ($user) {
             $user->update([

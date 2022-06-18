@@ -6,6 +6,7 @@ namespace App\Http\Actions\User;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Auth;
 
 /**
  * @todo これはまったく分離できていないので後で分離する
@@ -27,8 +28,10 @@ final class GetUserInfoAction extends Controller
      */
     public function __invoke(Request $request): \Illuminate\Http\JsonResponse
     {
+        $user = Auth::user();
         return response()->json([
-            'user_info' => $request->user(),
+            'name' => $user->name,
+            'id' => $user->id,
         ]);
     }
 }

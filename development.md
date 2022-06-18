@@ -78,3 +78,25 @@ http://127.0.0.1:2651/
 ## 参考
 
 https://hisa-web.net/archives/502
+
+## 環境構築
+
+```
+make init
+```
+
+で出てくる
+
+```
+dc exec app php artisan passport:client --personal
+```
+
+の id をバックエンド.env の NEXT_APP_CLIENT にコピー  
+の pass をフロントエンドの.env の
+
+```
+LARAVEL_PASSPORT_CLIENT_ID=
+LARAVEL_PASSPORT_CLIENT_SECRET=
+```
+
+に入れる

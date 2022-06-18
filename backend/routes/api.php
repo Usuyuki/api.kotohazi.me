@@ -29,3 +29,8 @@ Route::group(['middleware' => ['web']], function () {
 });
 Route::get('/auth/{provider}/callback', HandleProviderCallbackAction::class)
     ->where('provider', 'google')->name('oauth.callback');
+
+// ログイン
+Route::middleware(['auth:sanctum', 'verified'])->group(function () {
+    Route::get('/api/userInfo', GetUserInfoAction::class)->name('getUserInfoAction');
+});
