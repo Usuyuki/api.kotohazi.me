@@ -22,11 +22,11 @@ final class HandleProviderCallbackAction extends Controller
      */
     public function __invoke()
     {
-        /** @todo statelessメソッドを使用すると、セッション状態の確認を無効にできます。これは、クッキーベースのセッションを利用しないステートレスAPIに、ソーシャル認証を追加する場合に有用です。 */
+        /** @todo statelessメソッドを使用すると、セッション状態の確認を無効にできます。これは、クッキーベースのセッションを利用しないステートレスAPIに、ソーシャル認証を追加する場合に有用 */
         $googleUser = Socialite::driver('google')->stateless()->user();
 
         $user  = User::where('google_id', $googleUser->id)->first();
-        $token = Str::random(80);
+        $token = $user->createToken('kotohazi.me')->accessToken;
 
         if ($user) {
             $user->update([
