@@ -194,4 +194,8 @@ return [
         // 'ExampleClass' => App\Example\ExampleClass::class,
     ])->toArray(),
 
+
+    'next_app_url' => env('NEXT_APP_URL'),
+    'next_app_client_id' => env('NEXT_APP_CLIENT_ID'),
+
 ];

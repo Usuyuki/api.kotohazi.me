@@ -21,7 +21,8 @@ return new class extends Migration
             $table->string("description")->nullable()->comment("アンケート説明文章");
             $table->string("evaluation_title")->nullable()->comment("「評価」に値する名前");
             $table->string("impression_title")->nullable()->comment("「感想」に値する名前");
-            $table->string("evaluation_emoji")->nullable()->comment("5段階で使いたい絵文字");
+            $table->string("evaluation_emoji", 4)->nullable()->comment("5段階で使いたい絵文字");
+            //stringの第2引数は基本的には文字数だが、バイト数の可能性もあるので、utf-8で4バイト使う想定で1文字4バイト確保
             $table->string("good_name")->nullable()->comment("良いに該当する名前");
             $table->string("bad_name")->nullable()->comment("悪いに該当する名前");
             $table->string("after_answering")->nullable()->comment("アンケート送信後の感謝コメント");
