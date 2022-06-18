@@ -74,3 +74,7 @@ http://127.0.0.1:2650/
 
 メール  
 http://127.0.0.1:2651/
+
+## 参考
+
+https://hisa-web.net/archives/502
