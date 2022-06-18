@@ -26,7 +26,7 @@ final class HandleProviderCallbackAction extends Controller
         $googleUser = Socialite::driver('google')->stateless()->user();
 
         $user  = User::where('google_id', $googleUser->id)->first();
-        $token = $user->createToken('kotohazi.me')->accessToken;
+
 
         if ($user) {
             $user->update([
@@ -37,7 +37,6 @@ final class HandleProviderCallbackAction extends Controller
                 'login_provider' => 1,
                 'google_token' => $googleUser->token,
                 'google_refresh_token' => $googleUser->refreshToken,
-                'api_token' => hash('sha256', $token),
             ]);
         } else {
             $user = User::create([
@@ -49,13 +48,11 @@ final class HandleProviderCallbackAction extends Controller
                 'google_id' => $googleUser->id,
                 'google_token' => $googleUser->token,
                 'google_refresh_token' => $googleUser->refreshToken,
-                'api_token' => hash('sha256', $token),
             ]);
         }
+        $token = $user->createToken('kotohazi.me')->accessToken;
 
         Auth::login($user);
-
-        $cookie = cookie('api_token', $token, '10000000', null, null, null, false);
-        return redirect(env('FRONTEND_URL') . '/home')->cookie($cookie);
+        return redirect(env('FRONTEND_URL') . '/home')->header("token", $token);
     }
 }
