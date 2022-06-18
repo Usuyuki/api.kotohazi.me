@@ -17,7 +17,18 @@ class StatisticFactory extends Factory
     public function definition()
     {
         return [
-            //
+            'questionnaire_id' => $this->faker->numberBetween(1, 50),
+            'popular_words' => json_encode([
+                '1' => $this->faker->word,
+                '2' => $this->faker->word,
+            ]),
+
+            'number_of_responses' => $this->faker->numberBetween(1, 100000),
+            'distribution_of_evaluations' => json_encode([
+                '1' => $this->faker->word,
+                '2' => $this->faker->word,
+            ]),
+            'emotion' => $this->faker->numberBetween(0, 1.0),
         ];
     }
 }
